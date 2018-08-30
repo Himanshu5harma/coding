@@ -1,0 +1,46 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+void permute(string str,string s,vector<string>&v)
+{
+    if(str.length()==s.length())
+    {
+        v.push_back(s);
+        return;
+    }
+    int i;
+    for(i=0;str[i]!='\0';i++)
+    {   if(str[i]!='*')
+        {
+        char ch=str[i];
+        str[i]='*';
+            permute(str,s+ch,v);
+         str[i]=ch;
+            
+        }
+    }
+}
+
+int main() {
+    
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        string str;
+        cin>>str;
+        vector<string> v;
+        permute(str,"",v);
+        sort(v.begin(),v.end());
+        for(int i=0;i<v.size();i++)
+            cout<<v[i]<<" ";
+        cout<<endl;
+        // cout<<v.size()<<endl;
+        
+    }
+    return 0;
+}
